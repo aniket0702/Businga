@@ -128,6 +128,8 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
             loginmessage.setText(sharedpreferences.getString("Name", "You are") + " " + sharedpreferences.getString("email", "Not logged in") );
             loginmessage.setVisibility(View.VISIBLE);
             signin.setVisibility(View.GONE);
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
         }
         else
         {
