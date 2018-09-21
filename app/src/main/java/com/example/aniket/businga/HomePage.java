@@ -1,5 +1,10 @@
 package com.example.aniket.businga;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -21,7 +26,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,6 +45,7 @@ public class HomePage extends AppCompatActivity {
 
     private DrawerLayout drawer_layout;
     private ActionBarDrawerToggle mToggle;
+    private NavigationView navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +70,27 @@ public class HomePage extends AppCompatActivity {
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
-
+        NavigationView navigationView = (NavigationView)findViewById(R.id.navigationViewLayout);
+        navigationView.setNavigationItemSelectedListener(this);
     }
+
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if(id == R.id.logout)
+        {
+            Intent intent = new Intent(getApplicationContext(), Loginpage.class);
+            SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean("isLogin", false).commit();
+            startActivity(intent);
+
+        }
+        return true;
+    }
+
+
 
 
     @Override
@@ -85,6 +109,9 @@ public class HomePage extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+        if(mToggle.onOptionsItemSelected(item)){
             return true;
         }
 
@@ -152,7 +179,7 @@ public class HomePage extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
