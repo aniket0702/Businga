@@ -33,9 +33,9 @@ public class BusTrack extends Fragment {
 
     private void initializeData(){
         details = new ArrayList<>();
-        details.add(new BusTrackItemDetails("driver1", "79438"));
-        details.add(new BusTrackItemDetails("driver2", "78934"));
-        details.add(new BusTrackItemDetails("driver3", "75497"));
+        details.add(new BusTrackItemDetails("driver1", "79fdfa438"));
+        details.add(new BusTrackItemDetails("driver2", "789dafa34"));
+        details.add(new BusTrackItemDetails("driver3", "7549fdsaf7"));
     }
 
     private void initializeAdapter(){
