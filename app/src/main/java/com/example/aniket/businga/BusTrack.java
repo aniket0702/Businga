@@ -24,7 +24,7 @@ public class BusTrack extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View inflatedView = inflater.inflate(R.layout.fragment_bus_track, container, false);
-        rv = (RecyclerView)container.findViewById(R.id.rv);
+        rv = (RecyclerView)inflatedView.findViewById(R.id.rv);
 
         initializeData();
         initializeAdapter();
