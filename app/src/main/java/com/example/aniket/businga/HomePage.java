@@ -75,6 +75,8 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
     }
 
 
+
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
     {
@@ -97,8 +99,15 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
             Intent intent = new Intent(getApplicationContext(), BusTimeTable.class);
             startActivity(intent);
         }
+        else if(id == R.id.feedback)
+        {
+            Intent intent = new Intent(getApplicationContext(), FeedbackForm.class);
+            startActivity(intent);
+        }
         return true;
     }
+
+
 
 
 

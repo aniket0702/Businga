@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aniket.businga">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +24,8 @@
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HolidayList" />
-        <activity android:name=".BusTimeTable"></activity>
+        <activity android:name=".BusTimeTable" />
+        <activity android:name=".FeedbackForm"></activity>
     </application>
 
 </manifest>
