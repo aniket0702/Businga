@@ -49,12 +49,12 @@ public class FeedbackForm extends AppCompatActivity {
                 if (complaint.trim().length()==0) {
                     Toast.makeText(getApplicationContext(), "Enter something!", Toast.LENGTH_SHORT).show();
                 }else{
-                    progressDialog=new ProgressDialog(getApplicationContext());
-                    progressDialog.setTitle("Authenticate");;
+                    progressDialog=new ProgressDialog(FeedbackForm.this);
+                    progressDialog.setTitle("Authenticate");
                     progressDialog.setMessage("Authenticating...");
                     progressDialog.show();
                     String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
-                    postNewComment(getApplicationContext(), complaint, currentDateString, name);
+                    postNewComment(FeedbackForm.this, complaint, currentDateString, name);
                 }
             }
         });
@@ -70,9 +70,10 @@ public class FeedbackForm extends AppCompatActivity {
                 if(progressDialog!=null)
                 {
                     progressDialog.dismiss();
-                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
-                    startActivity(intent);
+  
                 }
+                Intent intent = new Intent(context, HomePage.class);
+                    startActivity(intent);
             }
         }, new Response.ErrorListener() {
             @Override
