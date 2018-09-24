@@ -8,4 +8,5 @@ public class BusTrackItemDetails {
         this.driverName = driverName;
         this.busNumber = busNumber;
     }
+
 }

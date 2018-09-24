@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <EditText
+        android:id="@+id/complaintPortalText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="this is from complaint portal" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="131dp"
+        android:hint="Enter the Complaints here" />
+
+    <Button
+        android:id="@+id/complaintSendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Send Complaint" />
+
+
+</RelativeLayout>
