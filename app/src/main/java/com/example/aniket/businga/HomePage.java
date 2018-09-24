@@ -87,6 +87,16 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
             startActivity(intent);
 
         }
+        else if (id == R.id.holiday_list)
+        {
+            Intent intent = new Intent(getApplicationContext(), HolidayList.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.time_table)
+        {
+            Intent intent = new Intent(getApplicationContext(), BusTimeTable.class);
+            startActivity(intent);
+        }
         return true;
     }
 
