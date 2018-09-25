@@ -130,6 +130,7 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
             signin.setVisibility(View.GONE);
             Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
+            this.finish();
         }
         else
         {

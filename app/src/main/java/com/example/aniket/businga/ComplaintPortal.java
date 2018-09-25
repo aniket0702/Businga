@@ -77,6 +77,7 @@ public class ComplaintPortal extends Fragment {
                     progressDialog.dismiss();
                     Intent intent = new Intent(getContext(), HomePage.class);
                     startActivity(intent);
+                    getActivity().finish();
                 }
             }
         }, new Response.ErrorListener() {

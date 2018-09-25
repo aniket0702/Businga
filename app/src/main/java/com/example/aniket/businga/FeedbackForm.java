@@ -59,7 +59,7 @@ public class FeedbackForm extends AppCompatActivity {
             }
         });
     }
-    public void postNewComment(Context context, final String complaint, final String date, final String name){
+    public void postNewComment(final Context context, final String complaint, final String date, final String name){
 
         Log.i(TAG, "getParams: " + complaint);
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -74,6 +74,7 @@ public class FeedbackForm extends AppCompatActivity {
                 }
                 Intent intent = new Intent(context, HomePage.class);
                     startActivity(intent);
+                    finish();
             }
         }, new Response.ErrorListener() {
             @Override

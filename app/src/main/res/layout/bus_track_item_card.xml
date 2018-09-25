@@ -9,23 +9,43 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        >
+        android:padding="16dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/driver_name"
-            android:layout_alignParentTop="true"
-            android:textSize="30sp"
-            />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bus_number"
+            android:layout_alignParentTop="true"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/driverNumber"
+            android:text="Driver Number"
             android:layout_below="@+id/driver_name"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/bus_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/driverNumber" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:id="@+id/horizontalLine"
+            android:layout_below="@+id/bus_number"
+            android:layout_height="2dp"
+            android:background="#c0c0c0" />
+
+        <Button
+            android:id="@+id/track"
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="20dp"
+            android:layout_height="wrap_content"
+            android:text="Track" />
 
     </RelativeLayout>
 
