@@ -18,6 +18,7 @@ public class BusTrack extends Fragment {
 
     private List<BusTrackItemDetails> details;
     private RecyclerView rv;
+    BusDetails bus;
 
     @Nullable
     @Override
@@ -26,23 +27,24 @@ public class BusTrack extends Fragment {
         View inflatedView = inflater.inflate(R.layout.fragment_bus_track, container, false);
         rv = (RecyclerView)inflatedView.findViewById(R.id.rv);
 
+        bus=new BusDetails(getContext());
         initializeData();
         initializeAdapter();
         return inflatedView;
     }
 
     private void initializeData(){
-        details = new ArrayList<>();
-        details.add(new BusTrackItemDetails("driver1", "79fjksfdh9fdfa438"));
-        details.add(new BusTrackItemDetails("driver2", "789dafa34"));
-        details.add(new BusTrackItemDetails("driver3", "7549fdsaf7"));
+        details =BusDetails.list;
+        /*details.add(new BusTrackItemDetails("driver1", "9414562357","RJ13 DR 5678",1));
+        details.add(new BusTrackItemDetails("driver2", "7894561230","RJ13 DR 5678",3));
+        details.add(new BusTrackItemDetails("driver3", "4512879630","RJ13 DR 5678",2));*/
     }
 
     private void initializeAdapter(){
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        BusTrackRVAdapter adapter = new BusTrackRVAdapter(details);
+        BusTrackRVAdapter adapter = new BusTrackRVAdapter(details,getContext());
         rv.setAdapter(adapter);
     }
 

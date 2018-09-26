@@ -1,12 +1,15 @@
 package com.example.aniket.businga;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,22 +17,25 @@ public class BusTrackRVAdapter extends RecyclerView.Adapter<BusTrackRVAdapter.Pe
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cv;
-        TextView driver_name;
-        TextView bus_number;
+        TextView name,mobile,bus_no,bus_id;
+        Button track;
 
         PersonViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            driver_name = (TextView)itemView.findViewById(R.id.driver_name);
-            bus_number = (TextView)itemView.findViewById(R.id.bus_number);
+            name=itemView.findViewById(R.id.name);
+            mobile=itemView.findViewById(R.id.mobile);
+            bus_no=itemView.findViewById(R.id.bus_no);
+            bus_id=itemView.findViewById(R.id.bus_id);
+            track=itemView.findViewById(R.id.track);
         }
     }
 
     List<BusTrackItemDetails> details;
+    Context mctx;
 
-    BusTrackRVAdapter(List<BusTrackItemDetails> persons){
+    BusTrackRVAdapter(List<BusTrackItemDetails> persons,Context mctx){
         this.details = persons;
+        this.mctx=mctx;
     }
 
     @Override
@@ -46,8 +52,18 @@ public class BusTrackRVAdapter extends RecyclerView.Adapter<BusTrackRVAdapter.Pe
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.driver_name.setText(details.get(i).driverName);
-        personViewHolder.bus_number.setText(details.get(i).busNumber);
+        BusTrackItemDetails det=details.get(i);
+        personViewHolder.name.setText(det.name);
+        personViewHolder.mobile.setText(det.mobile);
+        personViewHolder.bus_no.setText(det.bus_no);
+        personViewHolder.bus_id.setText(String.valueOf(det.bus_id));
+
+        personViewHolder.track.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mctx,"Taking to maps...",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
