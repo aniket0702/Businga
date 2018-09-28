@@ -31,6 +31,7 @@ public class SplashScreen extends AppCompatActivity {
     VideoView videoView;
     int flg=0,flg2=0;
     BusDetails bus;
+    NotificationDetails notificationDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
         getSupportActionBar().hide();
 
+        notificationDetails = new NotificationDetails(this);
         bus=new BusDetails(this);
 
         videoView = (VideoView)findViewById(R.id.videoView);
@@ -57,7 +59,7 @@ public class SplashScreen extends AppCompatActivity {
                }
             }
         });
-        postNewComment();
+        getNotifications();
         videoView.start();
        /* new Handler().postDelayed(new Runnable(){
             @Override
@@ -111,6 +113,43 @@ public class SplashScreen extends AppCompatActivity {
         };
         queue.add(sr);
 
+    }
+
+
+    public void getNotifications(){
+
+        RequestQueue queue = Volley.newRequestQueue(SplashScreen.this);
+        StringRequest sr = new StringRequest(Request.Method.GET,"https://wwwbusingacom.000webhostapp.com/notifications.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, "onResponse: " + response);
+                //Do something when response recieved
+                String driv[]=response.split("////");
+                for(String d:driv)
+                {
+                    String det[]=d.split("//");
+                    if(det.length==3) {
+                        if(det[1]!="" && det[2]!=""){
+                            notificationDetails.add_notification(det[1], det[2]);
+                        }
+                    }
+                }
+                postNewComment();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                return params;
+            }
+        };
+        queue.add(sr);
     }
 
 }

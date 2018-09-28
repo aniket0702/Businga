@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,8 +28,9 @@ public class NotificationRVAdapter extends RecyclerView.Adapter<NotificationRVAd
     }
 
     List<NotificationsItemDetails> details;
-
-    NotificationRVAdapter(List<NotificationsItemDetails> persons){
+    Context mctx;
+    NotificationRVAdapter(List<NotificationsItemDetails> persons, Context mctx){
+        this.mctx = mctx;
         this.details = persons;
     }
 

@@ -31,16 +31,13 @@ public class Notification extends Fragment {
 
     }
     private void initializeData(){
-        details = new ArrayList<>();
-        details.add(new NotificationsItemDetails("driver1", "79fjksfdh9fdfa438"));
-        details.add(new NotificationsItemDetails("driver2", "789dafa34"));
-        details.add(new NotificationsItemDetails("driver3", "7549fdsaf7"));
+        details = NotificationDetails.list;
     }
     private void initializeAdapter(){
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        NotificationRVAdapter adapter = new NotificationRVAdapter(details);
+        NotificationRVAdapter adapter = new NotificationRVAdapter(details, getContext());
         rv.setAdapter(adapter);
     }
 }
