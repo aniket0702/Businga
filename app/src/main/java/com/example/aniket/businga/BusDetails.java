@@ -37,6 +37,9 @@ public class BusDetails
             editor.putInt(KEY_SIZE,pref.getInt(KEY_SIZE,-1)+1);
     }
 
+
+
+
     void decSize()
     {
         if(pref.getInt(KEY_SIZE,-1)>0)
