@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "435300137521",
+    "firebase_url": "https://businga-1536862296179.firebaseio.com",
+    "project_id": "businga-1536862296179",
+    "storage_bucket": "businga-1536862296179.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435300137521:android:d1e7cb4f55caffa6",
+        "android_client_info": {
+          "package_name": "com.example.aniket.businga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435300137521-s8vk16ptjegpv906aptf4sl129pn96up.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp8fYhPpuJ589JTnNwCr4mFgL7j1vezNQ"
+        },
+        {
+          "current_key": "AIzaSyAp8fYhPpuJ589JTnNwCr4mFgL7j1vezNQ"
+        },
+        {
+          "current_key": "AIzaSyAp8fYhPpuJ589JTnNwCr4mFgL7j1vezNQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
