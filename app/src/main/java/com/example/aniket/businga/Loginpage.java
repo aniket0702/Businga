@@ -45,6 +45,7 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
         signin.setOnClickListener(this);
         signout = (Button)findViewById(R.id.signoutbutton);
         signout.setOnClickListener(this);
+        signout.setVisibility(View.GONE);
 
         loginmessage.setVisibility(View.GONE);
         SharedPreferences sharedpreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
