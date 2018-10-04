@@ -143,6 +143,7 @@ public class SplashScreen extends AppCompatActivity {
                 Log.i(TAG, "onResponse: " + response);
                 //Do something when response recieved
                 String driv[]=response.split("////");
+                notificationDetails.list.clear();
                 for(String d:driv)
                 {
                     String det[]=d.split("//");

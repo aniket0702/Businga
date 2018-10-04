@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NotificationDetails {
     Context mctx;
-    static List<NotificationsItemDetails> list = new ArrayList<>();
+    public static List<NotificationsItemDetails> list = new ArrayList<>();
     NotificationDetails(Context mctx){
         this.mctx = mctx;
     }

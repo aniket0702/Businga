@@ -26,6 +26,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.google.android.gms.auth.api.Auth;
+
 public class HomePage extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     /**
@@ -87,6 +89,7 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
             SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
             sharedPreferences.edit().putBoolean("isLogin", false).commit();
             startActivity(intent);
+            finish();
 
         }
         else if (id == R.id.holiday_list)

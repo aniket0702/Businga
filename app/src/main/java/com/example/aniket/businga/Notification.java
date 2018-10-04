@@ -69,6 +69,7 @@ public class Notification extends Fragment {
             public void onResponse(String response) {
                 //Do something when response recieved
 
+                notificationDetails.list.clear();
                 String driv[]=response.split("////");
                 for(String d:driv) {
                     String det[] = d.split("//");
