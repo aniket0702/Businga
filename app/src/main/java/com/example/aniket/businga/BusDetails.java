@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BusDetails
+public class  BusDetails
 {
     SharedPreferences pref;
     SharedPreferences.Editor editor;

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/LimeYellow"
         android:padding="16dp">
 
         <TextView
@@ -19,42 +19,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1"
-            android:textStyle="bold"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Driver Name"
             android:layout_below="@+id/bus_id"
             android:layout_toRightOf="@+id/bus_id"
+            android:text="Driver Name"
             android:textSize="30sp" />
 
         <TextView
             android:id="@+id/mobile"
-            android:text="Driver Number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:layout_toRightOf="@+id/bus_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="Driver Number" />
 
         <TextView
             android:id="@+id/bus_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="bus number"
             android:layout_below="@+id/mobile"
-            android:layout_toRightOf="@+id/bus_id" />
+            android:layout_toRightOf="@+id/bus_id"
+            android:text="bus number" />
 
 
         <Button
             android:id="@+id/track"
             android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="20dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
             android:text="Track" />
 
     </RelativeLayout>

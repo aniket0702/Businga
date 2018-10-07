@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey"
     tools:context=".HomePage"
     android:id="@+id/drawerLayout" >
 
@@ -33,7 +34,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_weight="1"
-                android:background="?attr/colorPrimary"
+                android:background="@color/darkyellow"
+                app:titleTextColor="@color/Black"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@string/app_name">
@@ -43,13 +46,16 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/colorPrimaryDark"
+                app:tabPadding="10dp">
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tab_text_1" />
+                    android:text="@string/tab_text_1"
+                    android:visibility="visible" />
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem2"
@@ -67,7 +73,7 @@
                     android:id="@+id/tabItem4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tab 4" />
+                    android:text="@string/tab_4" />
 
             </android.support.design.widget.TabLayout>
         </android.support.design.widget.AppBarLayout>
@@ -76,6 +82,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_anchorGravity="center_horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

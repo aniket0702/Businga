@@ -9,18 +9,24 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
         android:layout_marginLeft="7dp"
+        android:layout_marginTop="106dp"
         android:layout_marginRight="7dp"
-        android:layout_marginTop="131dp"
-        android:hint="Enter the Complaints here" />
+        android:hint="Enter the Complaints here"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:id="@+id/complaintSendButton"
-        android:layout_below="@+id/complaintPortalText"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/complaintPortalText"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="109dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
         android:text="Send Complaint" />
 
 
