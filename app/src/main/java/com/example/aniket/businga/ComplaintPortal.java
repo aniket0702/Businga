@@ -68,7 +68,7 @@ public class ComplaintPortal extends Fragment {
 
         Log.i(TAG, "getParams: " + complaint);
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest sr = new StringRequest(Request.Method.POST,"https://script.google.com/macros/s/AKfycby0Rze19m7yU8aTYRAFfJDfgDhmjUPPiWFDp2NwfGL23CBU4ts/exec", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST,"https://script.google.com/macros/s/AKfycby0Rze19m7yU8aTYRAFfJDfgDhmjUPPiWFDp2NwfGL23CBU4ts/exec       ", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Do something when response recieved

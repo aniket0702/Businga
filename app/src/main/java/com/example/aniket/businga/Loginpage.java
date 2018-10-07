@@ -29,12 +29,13 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
+
 public class Loginpage extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView loginmessage;
     private SignInButton signin;
     private Button signout;
-    private GoogleApiClient googleApiClient;
+    static GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 9001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,17 +126,12 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
     {
         if(isLogin)
         {
-            SharedPreferences sharedpreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
-            loginmessage.setText(sharedpreferences.getString("Name", "You are") + " " + sharedpreferences.getString("email", "Not logged in") );
-            loginmessage.setVisibility(View.VISIBLE);
-            signin.setVisibility(View.GONE);
             Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
             this.finish();
         }
         else
         {
-            loginmessage.setVisibility(View.GONE);
             signin.setVisibility(View.VISIBLE);
         }
     }
