@@ -64,7 +64,7 @@ public class Notification extends Fragment {
     public void refreshnotification()
     {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        StringRequest sr = new StringRequest(Request.Method.GET,"https://wwwbusingacom.000webhostapp.com/notifications.php", new Response.Listener<String>() {
+            StringRequest sr = new StringRequest(Request.Method.GET,"https://wwwbusingacom.000webhostapp.com/notifications.php", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //Do something when response recieved

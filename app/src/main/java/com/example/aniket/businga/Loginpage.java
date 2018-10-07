@@ -29,12 +29,13 @@ import java.io.FileDescriptor;
 import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
+
 public class Loginpage extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView loginmessage;
     private SignInButton signin;
     private Button signout;
-    private GoogleApiClient googleApiClient;
+    static GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 9001;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +126,7 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
     {
         if(isLogin)
         {
-                Intent intent = new Intent(this, HomePage.class);
+            Intent intent = new Intent(this, HomePage.class);
             startActivity(intent);
             this.finish();
         }

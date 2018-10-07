@@ -27,6 +27,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 public class HomePage extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,15 +48,26 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
     private DrawerLayout drawer_layout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView navigation;
+    GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build();
+    GoogleApiClient mGoogleApiClient;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        mGoogleApiClient.connect();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer_layout = (DrawerLayout)findViewById(R.id.drawerLayout);
@@ -85,11 +100,21 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         int id = item.getItemId();
         if(id == R.id.logout)
         {
-            Intent intent = new Intent(getApplicationContext(), Loginpage.class);
-            SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
-            sharedPreferences.edit().putBoolean("isLogin", false).commit();
-            startActivity(intent);
-            finish();
+
+
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                @Override
+                public void onResult(@NonNull Status status) {
+                    Intent intent = new Intent(getApplicationContext(), Loginpage.class);
+                    SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
+                    sharedPreferences.edit().putBoolean("isLogin", false).commit();
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
+
+
 
         }
         else if (id == R.id.holiday_list)
@@ -105,6 +130,15 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         else if(id == R.id.feedback)
         {
             Intent intent = new Intent(getApplicationContext(), FeedbackForm.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.home){
+            Intent intent  = new Intent(getApplicationContext(), HomePage.class);
+            startActivity(intent);
+            finish();
+        }
+        else if(id == R.id.nav_account){
+            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
             startActivity(intent);
         }
         return true;
