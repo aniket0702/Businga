@@ -111,14 +111,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 getNotifications();
-                postNewComment();
-                Intent mainIntent = new Intent(SplashScreen.this, Loginpage.class);
-
-
-                    SplashScreen.this.startActivity(mainIntent);
-                if(flg2==1) {
-                    SplashScreen.this.finish();
-                }
+                flg = 1;
             }
         }, SPLASH_DISPLAY_LENGTH);
 
