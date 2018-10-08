@@ -6,10 +6,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="false"
-        android:largeHeap="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -40,7 +40,8 @@
         <activity android:name=".HolidayList" />
         <activity android:name=".BusTimeTable" />
         <activity android:name=".FeedbackForm" />
-        <activity android:name=".MyAccount"></activity>
+        <activity android:name=".MyAccount" />
+        <activity android:name=".ImportantContacts"></activity>
     </application>
 
 </manifest>
