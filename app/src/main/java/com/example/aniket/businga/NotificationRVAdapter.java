@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +51,7 @@ public class NotificationRVAdapter extends RecyclerView.Adapter<NotificationRVAd
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
         personViewHolder.header.setText(details.get(i).header);
         personViewHolder.body.setText(details.get(i).body);
+
     }
 
     @Override

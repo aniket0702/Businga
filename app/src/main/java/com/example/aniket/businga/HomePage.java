@@ -100,6 +100,7 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
 
 
 
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item)
     {
@@ -143,6 +144,10 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         }
         else if(id == R.id.imp_contacts){
             Intent intent = new Intent(getApplicationContext(), ImportantContacts.class);
+            startActivity(intent);
+        }
+        else if(id == R.id.setting){
+            Intent intent = new Intent(getApplicationContext(), SettingsNavBar.class);
             startActivity(intent);
         }
         return true;

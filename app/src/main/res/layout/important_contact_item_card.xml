@@ -12,19 +12,27 @@
         android:padding="16dp">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
             android:id="@+id/contact_name"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:text="name"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/contact_number"
+            android:text="name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/contact_name"
             android:layout_centerHorizontal="true"
+            android:layout_below="@+id/contact_name"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/callcontact"
+            android:text="Call"
+            android:layout_below="@+id/contact_number" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

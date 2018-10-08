@@ -41,7 +41,8 @@
         <activity android:name=".BusTimeTable" />
         <activity android:name=".FeedbackForm" />
         <activity android:name=".MyAccount" />
-        <activity android:name=".ImportantContacts"></activity>
+        <activity android:name=".ImportantContacts" />
+        <activity android:name=".SettingsNavBar"></activity>
     </application>
 
 </manifest>
