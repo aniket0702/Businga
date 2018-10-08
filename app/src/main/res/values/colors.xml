@@ -3,8 +3,8 @@
     <color name="colorPrimary">#565051</color>
     <color name="colorPrimaryDark">#565051</color>
     <color name="colorAccent">#ff4081</color>
-    <color name = "darkyellow">#ffc107</color>
-    <color name ="LimeYellow">#ffc107</color>
+    <color name = "darkyellow">#FFDF00</color>
+    <color name ="LimeYellow">#eaf8cf67</color>
     <color name ="Black">#000000</color>
-    <color name ="Grey">#d0d3d9</color>
+    <color name ="Grey">#A9A9A9</color>
 </resources>

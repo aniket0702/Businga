@@ -22,10 +22,10 @@
      android:layout_marginLeft="10dp"
      android:layout_marginBottom="40dp"
      android:adjustViewBounds="false"
-     android:background="@color/Grey"
+     android:background="@android:color/transparent"
      android:cropToPadding="false"
      android:elevation="5sp"
-     app:srcCompat="@drawable/usericon" />
+     app:srcCompat="@drawable/usericon1" />
 
  <TextView
      android:id="@+id/textView2"

@@ -31,15 +31,16 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
+                style="@style/Animation.AppCompat.DropDownUp"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_weight="1"
                 android:background="@color/darkyellow"
-                app:titleTextColor="@color/Black"
                 android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name">
+                app:title="@string/app_name"
+                app:titleTextColor="@color/Black">
 
             </android.support.v7.widget.Toolbar>
 
@@ -48,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="@color/colorPrimaryDark"
+                app:tabIndicatorAnimationDuration="2000"
                 app:tabPadding="10dp">
 
                 <android.support.design.widget.TabItem
