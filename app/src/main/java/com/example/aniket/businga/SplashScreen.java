@@ -82,7 +82,7 @@ public class SplashScreen extends AppCompatActivity {
 //            public void onCompletion(MediaPlayer mp) {
 //               flg=1;
 //                Log.d("tag","Anim: "+String.valueOf(flg)+String.valueOf(flg2));
-//               if(flg2==1)
+//
 //               {
 //                   Log.d("tag",String.valueOf(flg)+String.valueOf(flg2));
 //                   startActivity(new Intent(SplashScreen.this, Loginpage.class));
@@ -113,8 +113,12 @@ public class SplashScreen extends AppCompatActivity {
                 getNotifications();
                 postNewComment();
                 Intent mainIntent = new Intent(SplashScreen.this, Loginpage.class);
-                SplashScreen.this.startActivity(mainIntent);
-                SplashScreen.this.finish();
+
+
+                    SplashScreen.this.startActivity(mainIntent);
+                if(flg2==1) {
+                    SplashScreen.this.finish();
+                }
             }
         }, SPLASH_DISPLAY_LENGTH);
 
@@ -135,7 +139,6 @@ public class SplashScreen extends AppCompatActivity {
                     String det[] = d.split(",");
                     bus.updateBus(det[0], det[1], det[2], Integer.parseInt(det[3]));
                 }
-
 
                 Log.d("tag", "Volley: " + String.valueOf(flg) + String.valueOf(flg2));
                 flg2 = 1;

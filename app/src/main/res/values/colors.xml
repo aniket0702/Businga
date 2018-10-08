@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#565051</color>
     <color name="colorAccent">#ff4081</color>
     <color name = "darkyellow">#ffc107</color>
-    <color name ="LimeYellow">#FFFFE082</color>
+    <color name ="LimeYellow">#ffc107</color>
     <color name ="Black">#000000</color>
     <color name ="Grey">#d0d3d9</color>
 </resources>

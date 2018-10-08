@@ -7,9 +7,11 @@
         android:id="@+id/gid1">
         <item
             android:id="@+id/home"
+            android:icon="@drawable/home"
             android:title="@string/home" />
         <item
             android:id="@+id/nav_account"
+            android:icon="@drawable/account"
             android:title="@string/nav_account" />
     </group>
 
@@ -17,14 +19,15 @@
         android:id="@+id/gid2">
         <item
             android:id="@+id/time_table"
-            android:icon="@drawable/imptdatesicon"
+            android:icon="@drawable/ic_directions_transit_black_24dp"
             android:title="@string/time_table" />
         <item
             android:id="@+id/holiday_list"
-            android:icon="@drawable/holidayicon"
+            android:icon="@drawable/ic_date_range_black_24dp"
             android:title="Holiday List" />
         <item
             android:id="@+id/imp_contacts"
+            android:icon="@drawable/contact"
             android:title="@string/imp_contacts" />
     </group>
 
@@ -32,12 +35,15 @@
         android:id="@+id/gid3">
         <item
             android:id="@+id/help"
+            android:icon="@drawable/help"
             android:title="@string/help" />
         <item
             android:id="@+id/feedback"
+            android:icon="@drawable/feedback"
             android:title="@string/feedback" />
         <item
             android:id="@+id/about"
+            android:icon="@drawable/aboutus"
             android:title="@string/about" />
     </group>
 
@@ -45,9 +51,11 @@
         android:id="@+id/gid4">
         <item
             android:id="@+id/setting"
+            android:icon="@drawable/settings"
             android:title="@string/setting" />
         <item
             android:id="@+id/logout"
+            android:icon="@drawable/logout"
             android:title="@string/logout" />
     </group>
 </menu>
