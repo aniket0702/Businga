@@ -89,6 +89,12 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigationViewLayout);
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        TextView name_nav_header = header.findViewById(R.id.textView2);
+        TextView email_nav_header = header.findViewById(R.id.textView4);
+        SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
+        name_nav_header.setText(sharedPreferences.getString("Name",""));
+        email_nav_header.setText(sharedPreferences.getString("email",""));
     }
 
 
@@ -100,8 +106,6 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         int id = item.getItemId();
         if(id == R.id.logout)
         {
-
-
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
                 @Override
                 public void onResult(@NonNull Status status) {
@@ -112,10 +116,6 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
                     finish();
                 }
             });
-
-
-
-
         }
         else if (id == R.id.holiday_list)
         {
