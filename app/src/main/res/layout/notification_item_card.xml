@@ -6,8 +6,8 @@
     android:layout_height="wrap_content"
     android:id="@+id/cv_notification"
     android:layout_margin="10sp"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="20dp">
+    app:cardElevation="20dp"
+    app:cardBackgroundColor="#ffef7a">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
             android:layout_alignLeft="@+id/notification_header"
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginTop="-5dp"
+            android:layout_marginTop="3dp"
             android:text="Body of the notification"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"

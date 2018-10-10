@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Grey"
     tools:context=".HomePage"
     android:id="@+id/drawerLayout" >
 
@@ -39,7 +38,7 @@
                 android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/app_name"
+                app:title="BUSINGA"
                 app:titleTextColor="@color/Black">
 
             </android.support.v7.widget.Toolbar>
@@ -48,8 +47,8 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/colorPrimaryDark"
-                app:tabIndicatorAnimationDuration="2000"
+                app:tabIndicatorColor="@color/Black"
+                app:tabTextColor="#ffffff"
                 app:tabPadding="10dp">
 
                 <android.support.design.widget.TabItem
