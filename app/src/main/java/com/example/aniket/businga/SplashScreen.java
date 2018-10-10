@@ -29,6 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
@@ -71,27 +72,6 @@ public class SplashScreen extends AppCompatActivity {
                     }
                 });
 
-
-//
-//        videoView = (VideoView)findViewById(R.id.videoView);
-//
-//        Uri video = Uri.parse("android.resource://"+getPackageName() + "/"+R.raw.video);
-//        videoView.setVideoURI(video);
-//        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//            @Override
-//            public void onCompletion(MediaPlayer mp) {
-//               flg=1;
-//                Log.d("tag","Anim: "+String.valueOf(flg)+String.valueOf(flg2));
-//
-//               {
-//                   Log.d("tag",String.valueOf(flg)+String.valueOf(flg2));
-//                   startActivity(new Intent(SplashScreen.this, Loginpage.class));
-//                   finish();
-//               }
-//            }
-//        });
-//        getNotifications();
-//        videoView.start();
         businga = (Button) findViewById(R.id.button);
         icon = (ImageView) findViewById(R.id.imageView2);
         display = (TextView) findViewById(R.id.textView);
@@ -101,12 +81,6 @@ public class SplashScreen extends AppCompatActivity {
         businga.setAnimation(mytransition);
         icon.setAnimation(fromtop);
         display.setAnimation(mytransition);
-
-
-//        Log.d("tag", String.valueOf(flg) + String.valueOf(flg2));
-//        startActivity(new Intent(SplashScreen.this, Loginpage.class));
-//        finish();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

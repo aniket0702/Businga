@@ -32,9 +32,12 @@ import java.util.concurrent.TimeUnit;
 
 public class Loginpage extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
+    private boolean isLogin;
+    private boolean isAdmin;
     private TextView loginmessage;
     private SignInButton signin;
     private Button signout;
+    private String email;
     static GoogleApiClient googleApiClient;
     private static final int REQ_CODE = 9001;
     @Override
@@ -50,8 +53,9 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
 
         loginmessage.setVisibility(View.GONE);
         SharedPreferences sharedpreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
-        boolean result = sharedpreferences.getBoolean("isLogin", false);
-        updateUI(result);
+        isLogin = sharedpreferences.getBoolean("isLogin", false);
+        isAdmin = sharedpreferences.getBoolean("isAdmin", false);
+        updateUI();
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
 
@@ -65,8 +69,6 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
             case R.id.googlelogin:
                 signIn();
                 break;
-            case R.id.signoutbutton:
-                signOut();
         }
     }
 
@@ -80,20 +82,7 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
         Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
         startActivityForResult(intent, REQ_CODE);
     }
-    private void signOut()
-    {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                updateUI(false);
-                SharedPreferences sharedpreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean("isLogin", false);
 
-                editor.commit();
-            }
-        });
-    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -114,21 +103,39 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
             loginmessage.setText(name + " " + email);
             SharedPreferences sharedpreferences = getSharedPreferences("Mypref", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedpreferences.edit();
+            isLogin = true;
             editor.putBoolean("isLogin", true);
             editor.putString("Name", name);
             editor.putString("email", email);
-            editor.commit();
 
-            updateUI(true);
+
+            if(email.equals("aniketagarwal11133@gmail.com"))
+            {
+                isAdmin = true;
+                editor.putBoolean("isAdmin", true);
+            }
+            else{
+                isAdmin = false;
+                editor.putBoolean("isAdmin", false);
+            }
+            updateUI();
+            editor.commit();
         }
     }
-    private void updateUI(boolean isLogin)
+
+    private void updateUI()
     {
         if(isLogin)
         {
-            Intent intent = new Intent(this, HomePage.class);
-            startActivity(intent);
-            this.finish();
+            if(isAdmin){
+                Intent intent = new Intent(this, AdminMainActivity.class);
+                startActivity(intent);
+                this.finish();
+            }else {
+                Intent intent = new Intent(this, HomePage.class);
+                startActivity(intent);
+                this.finish();
+            }
         }
         else
         {
