@@ -14,7 +14,7 @@ public class NotificationDetails {
 
     public void add_notification(String header, String body)
     {
-        list.add(new NotificationsItemDetails(header, body));
+        list.add(0,new NotificationsItemDetails(header, body));
     }
 
 }

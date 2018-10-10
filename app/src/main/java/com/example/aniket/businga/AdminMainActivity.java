@@ -37,6 +37,7 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
         mGoogleApiClient.connect();
         setContentView(R.layout.admin_main_activity);
         logout = findViewById(R.id.adminLogout);
+        logout.setOnClickListener(this);
         new_notification = findViewById(R.id.new_notification);
         old_notifications = findViewById(R.id.old_notification);
         new_poll = findViewById(R.id.new_poll);
@@ -62,6 +63,9 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.old_poll:
                 intent = new Intent(this, AdminNewNotification.class);
+                break;
+            case R.id.adminLogout:
+                logoutFunction();
                 break;
         }
         startActivity(intent);

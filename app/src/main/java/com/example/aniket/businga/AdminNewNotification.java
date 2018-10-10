@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +73,7 @@ public class AdminNewNotification extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i(TAG, "onResponse: send notification" + response);
+                addNotification();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -106,4 +108,32 @@ public class AdminNewNotification extends AppCompatActivity {
         };
         queue.add(sr);
     }
+    private void addNotification(){
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest sr = new StringRequest(Request.Method.POST, "https://wwwbusingacom.000webhostapp.com/notifications.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i(TAG, "onResponse: " + response);
+                Intent intent  = new Intent(getApplicationContext(), AdminMainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("header", header);
+                params.put("body", body);
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
 }
