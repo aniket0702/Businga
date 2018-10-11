@@ -39,7 +39,7 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="BUSINGA"
-                app:titleTextColor="@color/colorPrimary">
+                app:titleTextColor="#ffffff">
 
             </android.support.v7.widget.Toolbar>
 

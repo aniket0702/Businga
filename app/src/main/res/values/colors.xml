@@ -3,7 +3,7 @@
     <color name="colorPrimary">#565051</color>
     <color name="colorPrimaryDark">#565051</color>
     <color name="colorAccent">#ff4081</color>
-    <color name = "darkyellow">#FFDF00</color>
+    <color name = "darkyellow">	#D7A94B</color>
     <color name ="LimeYellow">#eaf8cf67</color>
     <color name ="Black">#0c0c0c</color>
     <color name ="Grey">#eaeaea</color>

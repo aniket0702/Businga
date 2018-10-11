@@ -5,9 +5,6 @@
     android:id="@+id/cv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2sp"
-    android:layout_marginLeft="2sp"
-    android:layout_marginRight="2sp"
     app:cardCornerRadius="10dp"
     app:cardElevation="20dp">
 
@@ -15,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="160dp"
         android:layout_marginTop="2dp"
-        android:background="@drawable/busblur"
+        android:background="@color/Grey"
         android:fadingEdge="vertical"
         android:padding="10dp">
 
@@ -25,7 +22,7 @@
             android:layout_height="46dp"
             android:layout_alignParentTop="true"
             android:text="1"
-            android:textColor="@color/Grey"
+            android:textColor="@color/colorPrimary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -39,7 +36,7 @@
             android:layout_toRightOf="@+id/bus_id"
             android:text="Driver Name"
             android:textAllCaps="false"
-            android:textColor="@color/Grey"
+            android:textColor="@color/colorPrimary"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -49,10 +46,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
             android:layout_marginLeft="3dp"
-            android:layout_marginTop="57dp"
+            android:layout_marginTop="55dp"
             android:layout_toRightOf="@+id/bus_id"
             android:text="Driver Number"
-            android:textColor="@color/Grey"
+            android:textColor="@color/colorPrimary"
             android:textStyle="italic" />
 
         <TextView
@@ -61,26 +58,24 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/mobile"
             android:layout_marginLeft="1dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginTop="0dp"
             android:layout_toRightOf="@+id/bus_id"
             android:text="Bus Number"
-            android:textColor="@color/Grey"
+            android:textColor="@color/colorPrimary"
             android:textStyle="italic" />
 
 
         <Button
             android:id="@+id/track"
             android:layout_width="107dp"
-            android:layout_height="45dp"
-            android:layout_alignParentTop="true"
+            android:layout_height="27dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="59dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="58dp"
+            android:layout_marginRight="31dp"
+            android:layout_marginBottom="13dp"
             android:background="@color/colorPrimaryDark"
             android:text="Track"
             android:textColor="#ffffff"

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/colorPrimary"
         android:fadingEdge="horizontal"
         android:fadingEdgeLength="@dimen/activity_horizontal_margin"
         android:gravity="center_vertical|center_horizontal"
@@ -25,10 +25,10 @@
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:text="HEADER"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#ffffff"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:fontFamily="@font/tinos_bold" />
+            app:fontFamily="@font/tenor_sans" />
 
         <TextView
             android:id="@+id/notification_body"
@@ -41,7 +41,7 @@
             android:layout_marginLeft="1dp"
             android:layout_marginTop="3dp"
             android:text="Body of the notification"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/Grey"
             android:textSize="24sp"
             app:fontFamily="sans-serif-condensed" />
     </RelativeLayout>
