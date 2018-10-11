@@ -39,7 +39,7 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="BUSINGA"
-                app:titleTextColor="@color/Black">
+                app:titleTextColor="@color/colorPrimary">
 
             </android.support.v7.widget.Toolbar>
 
@@ -47,9 +47,10 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorColor="@color/Black"
-                app:tabTextColor="#ffffff"
-                app:tabPadding="10dp">
+
+                app:tabIndicatorColor="@android:color/holo_orange_light"
+                app:tabPadding="10dp"
+                app:tabTextColor="#ffffff">
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem"
@@ -83,7 +84,6 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_anchorGravity="center_horizontal"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 

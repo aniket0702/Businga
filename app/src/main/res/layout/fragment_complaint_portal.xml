@@ -10,7 +10,6 @@
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="373dp"
         android:layout_height="194dp"
-        android:maxLines="5"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -19,11 +18,12 @@
         android:layout_marginTop="129dp"
         android:layout_marginRight="7dp"
         android:background="@android:color/background_light"
-        android:inputType="text|textMultiLine|textCapSentences"
         android:elevation="10dp"
         android:hint="Enter the Complaints here"
+        android:inputType="text|textMultiLine|textCapSentences"
+        android:maxLines="5"
         android:padding="10dp"
-        android:selectAllOnFocus="false"
+        android:selectAllOnFocus="true"
         android:singleLine="true" />
 
     <Button
@@ -37,9 +37,9 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
-        android:background="@color/Black"
+        android:background="@color/colorPrimaryDark"
         android:text="Send"
-        android:textColor="#ffffff"
+        android:textColor="@color/Grey"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
         android:layout_marginTop="90dp"
         android:text="Submit a Complaint*"
         android:textAlignment="center"
-        android:textColor="@color/Black"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         app:fontFamily="serif" />
@@ -61,19 +61,19 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/complaintPortalText"
+        android:layout_below="@+id/complaintSendButton"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        android:layout_marginBottom="44dp"
-        android:text="*This complaint will directly convey to the main authorities."
-        android:textStyle="italic"
-        android:layout_marginLeft="18dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="53dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="24dp"
+        android:text="*This complaint will directly convey to the main authorities with your Email Id and Name."
+        android:textStyle="italic" />
 
 </RelativeLayout>

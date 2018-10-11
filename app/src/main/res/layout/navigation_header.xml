@@ -5,7 +5,7 @@
     android:id="@+id/navigation_header_container"
     android:layout_width="match_parent"
     android:layout_height="180dp"
-    android:background="@drawable/navicon"
+    android:background="@drawable/lnmiitblur"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="10dp"
@@ -13,8 +13,8 @@
 
  <ImageView
      android:id="@+id/imageView"
-     android:layout_width="49dp"
-     android:layout_height="52dp"
+     android:layout_width="60dp"
+     android:layout_height="60dp"
      android:layout_alignParentStart="true"
      android:layout_alignParentLeft="true"
      android:layout_alignParentBottom="true"
@@ -38,7 +38,7 @@
      android:layout_marginLeft="0dp"
      android:layout_marginBottom="20dp"
      android:text="Mayur Varshney"
-     android:textColor="@android:color/background_light"
+     android:textColor="#ffffff"
      android:textStyle="bold" />
 
  <TextView
