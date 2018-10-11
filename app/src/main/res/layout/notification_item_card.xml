@@ -26,7 +26,7 @@
             android:layout_marginLeft="0dp"
             android:text="HEADER"
             android:textColor="#ffffff"
-            android:textSize="24sp"
+            android:textSize="25dp"
             android:textStyle="bold"
             app:fontFamily="@font/tenor_sans" />
 
@@ -42,7 +42,7 @@
             android:layout_marginTop="3dp"
             android:text="Body of the notification"
             android:textColor="@color/Grey"
-            android:textSize="24sp"
+            android:textSize="22sp"
             app:fontFamily="sans-serif-condensed" />
     </RelativeLayout>
 

@@ -37,10 +37,10 @@
         android:layout_marginTop="56dp"
         android:layout_marginEnd="124dp"
         android:layout_marginRight="124dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/darkyellow"
         android:text="Send"
         android:textColor="@color/Grey"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
