@@ -48,10 +48,6 @@
         <activity android:name=".AdminOldNotification" />
         <activity android:name=".AdminNewPoll" />
         <activity android:name=".AdminOldPoll"></activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

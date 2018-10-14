@@ -17,10 +17,11 @@ import com.google.android.gms.common.api.Status;
 public class AdminMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button new_notification;
-    Button old_notifications;
+    Button home_page;
     Button new_poll;
     Button old_poll_results;
     Button logout;
+    Button update_driver;
     GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build();
@@ -37,12 +38,14 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
         mGoogleApiClient.connect();
         setContentView(R.layout.admin_main_activity);
         logout = findViewById(R.id.adminLogout);
+        update_driver = findViewById(R.id.update_driver);
+        update_driver.setOnClickListener(this);
         logout.setOnClickListener(this);
         new_notification = findViewById(R.id.new_notification);
-        old_notifications = findViewById(R.id.old_notification);
+        home_page = findViewById(R.id.home_page);
         new_poll = findViewById(R.id.new_poll);
         old_poll_results = findViewById(R.id.old_poll);
-        old_notifications.setOnClickListener(this);
+        home_page.setOnClickListener(this);
         new_notification.setOnClickListener(this);
         new_poll.setOnClickListener(this);
         old_poll_results.setOnClickListener(this);
@@ -55,8 +58,8 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
             case R.id.new_notification:
                 intent = new Intent(this, AdminNewNotification.class);
                 break;
-            case R.id.old_notification:
-                intent = new Intent(this, AdminNewNotification.class);
+            case R.id.home_page:
+                intent = new Intent(this, HomePage.class);
                 break;
             case R.id.new_poll:
                 intent = new Intent(this, AdminNewNotification.class);
@@ -64,9 +67,13 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
             case R.id.old_poll:
                 intent = new Intent(this, AdminNewNotification.class);
                 break;
+            case R.id.update_driver:
+                intent = new Intent(this, AdminUpdateDriver.class);
+                break;
             case R.id.adminLogout:
                 logoutFunction();
                 break;
+
         }
         startActivity(intent);
     }
