@@ -79,8 +79,8 @@ public class SplashScreen extends AppCompatActivity {
         mytransition = AnimationUtils.loadAnimation(this, R.anim.mytransition);
         fromtop = AnimationUtils.loadAnimation(this, R.anim.fromtop);
         businga.setAnimation(mytransition);
-        icon.setAnimation(fromtop);
-        display.setAnimation(mytransition);
+        //icon.setAnimation(fromtop);
+        //display.setAnimation(mytransition);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

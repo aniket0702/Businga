@@ -10,8 +10,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:background="@color/blackishYellow"
         android:fadingEdge="horizontal"
         android:fadingEdgeLength="@dimen/activity_horizontal_margin"
         android:gravity="center_vertical|center_horizontal"
@@ -19,30 +19,30 @@
 
         <TextView
             android:id="@+id/notification_header"
-            android:layout_width="match_parent"
+            android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
             android:text="HEADER"
-            android:textColor="#ffffff"
-            android:textSize="25dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18dp"
             android:textStyle="bold"
-            app:fontFamily="@font/tenor_sans" />
+            app:fontFamily="@font/pontano_sans" />
 
         <TextView
             android:id="@+id/notification_body"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="391dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/notification_header"
             android:layout_alignStart="@+id/notification_header"
             android:layout_alignLeft="@+id/notification_header"
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:text="Body of the notification"
-            android:textColor="@color/Grey"
-            android:textSize="22sp"
+            android:textColor="@color/LimeYellow"
+            android:textSize="17sp"
             app:fontFamily="sans-serif-condensed" />
     </RelativeLayout>
 

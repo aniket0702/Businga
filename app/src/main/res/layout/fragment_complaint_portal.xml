@@ -40,7 +40,7 @@
         android:background="@color/darkyellow"
         android:text="Send"
         android:textColor="@color/Grey"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
