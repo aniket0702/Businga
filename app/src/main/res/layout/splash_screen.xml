@@ -72,7 +72,7 @@
         android:padding="10dp"
         android:text="BUSINGA"
         android:textAllCaps="true"
-        android:textColor="@color/LimeYellow"
+        android:textColor="@color/darkyellow"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
