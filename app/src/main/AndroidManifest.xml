@@ -44,6 +44,7 @@
         <activity android:name=".ImportantContacts" />
         <activity android:name=".SettingsNavBar" />
         <activity android:name=".AdminMainActivity" />
+        <activity android:name=".AdminUpdateDriver"/>
         <activity android:name=".AdminNewNotification" />
         <activity android:name=".AdminNewPoll" />
 

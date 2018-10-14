@@ -24,8 +24,11 @@ public class ImportantContacts extends AppCompatActivity {
 
     }
     private void initializeData(){
-        details.add(new ImportantContactsItemDetails("aniket", "38743987"));
-
+        details.add(new ImportantContactsItemDetails("Pratyansh Agarwal", "9456645326"));
+        details.add(new ImportantContactsItemDetails("Manan Jethanandini", "9950818619"));
+        details.add(new ImportantContactsItemDetails("Rajeev Saxena", "9829575700"));
+        details.add(new ImportantContactsItemDetails("Dr. Usha Kanoongo", "9950656775"));
+        details.add(new ImportantContactsItemDetails("Dr. Amit Neogi", "9413839224"));
     }
     private void initializeAdapter(){
         LinearLayoutManager llm = new LinearLayoutManager(this);

@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomePage"
     android:id="@+id/drawerLayout" >
-
-
-
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -47,7 +42,6 @@
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 app:tabIndicatorColor="@android:color/holo_orange_light"
                 app:tabPadding="10dp"
                 app:tabTextColor="#ffffff">
@@ -55,6 +49,8 @@
                 <android.support.design.widget.TabItem
                     android:id="@+id/tabItem"
                     android:layout_width="wrap_content"
+                    android:paddingRight="0dp"
+
                     android:layout_height="wrap_content"
                     android:text="@string/tab_text_1"
                     android:visibility="visible" />
@@ -69,6 +65,8 @@
                     android:id="@+id/tabItem3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingRight="0dp"
+                    android:layout_marginRight="0dp"
                     android:text="@string/tab_text_3" />
 
                 <android.support.design.widget.TabItem
@@ -85,16 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-
     </android.support.design.widget.CoordinatorLayout>
-
-
-
-
-
-
-
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationViewLayout"
