@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="142dp"
+        android:layout_marginTop="121dp"
         android:text="Poll header" />
 
     <EditText
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="191dp"
         android:text="Select_date" />
 
     <TextView
@@ -45,7 +45,9 @@
         android:id="@+id/to_or_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="214dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -60,10 +62,14 @@
             android:layout_height="wrap_content"
             android:text="Arrival" />
     </RadioGroup>
+
     <Button
+        android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/submit_button"
-        android:text="Create poll"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="136dp"
+        android:text="Create poll" />
 
 </RelativeLayout>

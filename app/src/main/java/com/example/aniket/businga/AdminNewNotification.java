@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,14 +44,18 @@ public class AdminNewNotification extends AppCompatActivity {
         send_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendNotification();
+                if(notification_body.getText().toString().trim().length() != 0 && notification_header.getText().toString().trim().length() !=0){
+                    sendNotification();
+                }else
+                {
+                    Toast.makeText(AdminNewNotification.this, "Cant leave fields empty", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
     private void sendNotification(){
-        header = notification_header.getText().toString();
-        body = notification_body.getText().toString();
+        header = notification_header.getText().toString().trim();
+        body = notification_body.getText().toString().trim();
         JSONObject bodyObject = new JSONObject();
 
         try {

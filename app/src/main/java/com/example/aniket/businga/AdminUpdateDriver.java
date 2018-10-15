@@ -117,10 +117,10 @@ public class AdminUpdateDriver extends AppCompatActivity {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("name", driver_name.getText().toString());
-                params.put("mobile", driver_number.getText().toString());
-                params.put("bus_no", bus_number.getText().toString());
-                params.put("bus_id", driver_id.getText().toString());
+                params.put("name", driver_name.getText().toString().trim());
+                params.put("mobile", driver_number.getText().toString().trim());
+                params.put("bus_no", bus_number.getText().toString().trim());
+                params.put("bus_id", driver_id.getText().toString().trim() );
                 return params;
             }
         };

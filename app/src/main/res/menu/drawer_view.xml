@@ -9,10 +9,6 @@
             android:id="@+id/home"
             android:icon="@drawable/home"
             android:title="@string/home" />
-        <item
-            android:id="@+id/nav_account"
-            android:icon="@drawable/account"
-            android:title="@string/nav_account" />
     </group>
 
     <group android:checkableBehavior="single"
@@ -34,21 +30,10 @@
     <group android:checkableBehavior="single"
         android:id="@+id/gid3">
         <item
-            android:id="@+id/help"
-            android:icon="@drawable/help"
-            android:title="@string/help" />
-        <item
             android:id="@+id/feedback"
             android:icon="@drawable/feedback"
             android:title="@string/feedback" />
-        <item
-            android:id="@+id/about"
-            android:icon="@drawable/aboutus"
-            android:title="@string/about" />
-    </group>
 
-    <group android:checkableBehavior="single"
-        android:id="@+id/gid4">
         <item
             android:id="@+id/setting"
             android:icon="@drawable/settings"

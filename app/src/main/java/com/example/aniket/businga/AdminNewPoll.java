@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
@@ -30,20 +31,24 @@ public class AdminNewPoll extends AppCompatActivity {
     int year, month, day;
     String date;
     TextView view_text;
-    Calendar from, to;
     DateFormat df;
-    List<Date> listDate;
+    String final_year[];
+    String final_month[];
+    String final_day[];
     RadioGroup radioGroup;
     RadioButton radioButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_poll);
+
         notification_body = findViewById(R.id.notification_body);
         notification_header = findViewById(R.id.notification_header);
         view_text=findViewById(R.id.view_text_view);
         date = "";
+        final_day = new String[2];
+        final_month = new String[2];
+        final_year = new String[2];
         submit = findViewById(R.id.submit_button);
         radioGroup = findViewById(R.id.to_or_from);
         from_date = findViewById(R.id.select_from_date);
@@ -51,24 +56,20 @@ public class AdminNewPoll extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        df = new SimpleDateFormat("yyyyMMdd");
-        from = Calendar.getInstance();
-        to = Calendar.getInstance();
+
         final DatePickerDialog.OnDateSetListener todatepicker = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
                 date = String.valueOf(i) + String.format("%02d", i1)+ String.format("%02d",i2);
-                try{
-                    to.setTime(df.parse(date));
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                listDate = getDates();
-                Log.i(TAG, "onDateSet: "+listDate.toString());
+                final_year[1] = String.valueOf(i);
+                final_month[1] = String.format("%02d", i1);
+                final_day[1] = String.format("%02d", i2);
             }
         };
+
         final DatePickerDialog.OnDateSetListener fromdatepicker = new DatePickerDialog.OnDateSetListener() {
 
+            @SuppressLint("DefaultLocale")
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
@@ -77,16 +78,13 @@ public class AdminNewPoll extends AppCompatActivity {
                 Calendar tocalandar = Calendar.getInstance();
                 tocalandar.set(year,monthOfYear, dayOfMonth);
                 date = String.valueOf(year) + String.format("%02d",monthOfYear)+ String.format("%02d",dayOfMonth);
-                try{
-                    from.setTime(df.parse(date));
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                final_year[0] = String.valueOf(year);
+                final_month[0] = String.format("%02d", monthOfYear);
+                final_day[0] = String.format("%02d", dayOfMonth);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AdminNewPoll.this, todatepicker, year, monthOfYear, dayOfMonth);
                 datePickerDialog.getDatePicker().setMinDate(tocalandar.getTimeInMillis());
                 datePickerDialog.show();
             }
-
         };
         from_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,29 +93,20 @@ public class AdminNewPoll extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(AdminNewPoll.this, fromdatepicker, year, month, day);
                 datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                 datePickerDialog.show();
+
             }
         });
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int id = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(id);
-                Toast.makeText(AdminNewPoll.this, radioButton.getText(), Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(AdminNewPoll.this, radioButton.getText(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AdminNewPoll.this, "Created Poll", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminNewPoll.this, final_year[0] + final_month[0] + final_day[0] ,Toast.LENGTH_SHORT).show();
             }
         });
     }
-    List<Date> getDates(){
-        ArrayList<Date> dates = new ArrayList<Date>();
-        Calendar cal1 = from;
-        Calendar cal2 = to;
-        while(!cal1.after(cal2))
-        {
-            dates.add(cal1.getTime());
-            cal1.add(Calendar.DATE, 1);
-        }
-        return dates;
-    }
+
 
 }

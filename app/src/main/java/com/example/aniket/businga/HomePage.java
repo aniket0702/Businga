@@ -136,10 +136,6 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
             startActivity(intent);
             finish();
         }
-        else if(id == R.id.nav_account){
-            Intent intent = new Intent(getApplicationContext(), MyAccount.class);
-            startActivity(intent);
-        }
         else if(id == R.id.imp_contacts){
             Intent intent = new Intent(getApplicationContext(), ImportantContacts.class);
             startActivity(intent);
