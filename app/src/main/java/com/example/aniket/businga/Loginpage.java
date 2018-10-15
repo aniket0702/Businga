@@ -109,7 +109,7 @@ public class Loginpage extends AppCompatActivity implements View.OnClickListener
             editor.putString("email", email);
 
 
-            if(email.equals("aniketagarwal11133@gmail.com"))
+            if(email.equals("aniketagarwal11133@gmail.com") || email.equals("varshneymayur31@gmail.com"))
             {
                 isAdmin = true;
                 editor.putBoolean("isAdmin", true);
