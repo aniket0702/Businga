@@ -3,6 +3,8 @@ package com.example.aniket.businga;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +17,24 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 public class AdminNewPoll extends AppCompatActivity {
 
@@ -31,7 +45,8 @@ public class AdminNewPoll extends AppCompatActivity {
     int year, month, day;
     String date;
     TextView view_text;
-    DateFormat df;
+    int fl;
+    ProgressDialog progressDialog;
     String final_year[];
     String final_month[];
     String final_day[];
@@ -41,9 +56,9 @@ public class AdminNewPoll extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_new_poll);
-
-        notification_body = findViewById(R.id.notification_body);
-        notification_header = findViewById(R.id.notification_header);
+        fl = 0;
+        notification_body = findViewById(R.id.poll_body);
+        notification_header = findViewById(R.id.poll_header);
         view_text=findViewById(R.id.view_text_view);
         date = "";
         final_day = new String[2];
@@ -56,6 +71,7 @@ public class AdminNewPoll extends AppCompatActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
+        radioGroup.check(R.id.arrival);
 
         final DatePickerDialog.OnDateSetListener todatepicker = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -64,6 +80,7 @@ public class AdminNewPoll extends AppCompatActivity {
                 final_year[1] = String.valueOf(i);
                 final_month[1] = String.format("%02d", i1);
                 final_day[1] = String.format("%02d", i2);
+                fl = 1;
             }
         };
 
@@ -99,14 +116,94 @@ public class AdminNewPoll extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = radioGroup.getCheckedRadioButtonId();
-                radioButton = findViewById(id);
-//                Toast.makeText(AdminNewPoll.this, radioButton.getText(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(AdminNewPoll.this, "Created Poll", Toast.LENGTH_SHORT).show();
-                Toast.makeText(AdminNewPoll.this, final_year[0] + final_month[0] + final_day[0] ,Toast.LENGTH_SHORT).show();
+                if (checkConstraints() == true) {
+                    int id = radioGroup.getCheckedRadioButtonId();
+                    radioButton = findViewById(id);
+                    Toast.makeText(AdminNewPoll.this, final_year[0] + final_month[0] + final_day[0], Toast.LENGTH_SHORT).show();
+                    int type;
+                    if (radioButton.getText().equals("Arrival")) {
+                        type = 1;
+                    } else {
+                        type = 2;
+                    }
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date myDate = null;
+                    try {
+                        myDate = dateFormat.parse(final_year[0] + "-" + final_month[0] + "-" + final_day[0]);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Date newDate = new Date(myDate.getTime() - 86400000L);
+                    String till_date = dateFormat.format(newDate);
+                    progressDialog = new ProgressDialog(AdminNewPoll.this);
+                    progressDialog.setTitle("Creating new poll");
+                    progressDialog.setMessage("Just a moment...");
+                    progressDialog.show();
+                    createNewPoll(type, till_date);
+                    Log.i(TAG, "onClick: " + till_date);
+                }
+                else{
+                    Toast.makeText(AdminNewPoll.this, "Select all fields.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
+    boolean checkConstraints(){
+        int id = radioGroup.getCheckedRadioButtonId();
+        String header,body;
+        try{
+
+            header = notification_header.getText().toString().trim();
+            body = notification_body.getText().toString().trim();
+        }catch(Exception e){
+            e.printStackTrace();
+            header = "";
+            body = "";
+            Log.i(TAG, "checkConstraints: entered catch" );
+        }
+        if(header.length()>0 && body.length()>0 && fl==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public void createNewPoll(final int type, final String till_date){
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest sr = new StringRequest(Request.Method.POST,"https://wwwbusingacom.000webhostapp.com/bus_poll_admin.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Do something when response recieved
+                Log.i(TAG, "onResponse: new poll created" + response);
+                if(progressDialog!=null)
+                {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(getApplicationContext(), AdminMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                if(progressDialog!=null)
+                    progressDialog.dismiss();
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("type",String.valueOf(type));
+                params.put("FromDate",final_year[0]+final_month[0] + final_day[0]);
+                params.put("ToDate",final_year[1]+final_month[1] + final_day[1]);
+                params.put("till_when", till_date);
+
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
 
 }
+

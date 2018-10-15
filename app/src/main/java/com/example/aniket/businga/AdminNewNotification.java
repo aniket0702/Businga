@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import static android.content.ContentValues.TAG;
 
 public class AdminNewNotification extends AppCompatActivity {
 
+    ProgressDialog progressDialog;
     private String header;
     private String body;
     EditText notification_header;
@@ -45,7 +47,10 @@ public class AdminNewNotification extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(notification_body.getText().toString().trim().length() != 0 && notification_header.getText().toString().trim().length() !=0){
-                    sendNotification();
+                    progressDialog = new ProgressDialog(AdminNewNotification.this);
+                    progressDialog.setTitle("Sending Notification");
+                    progressDialog.setMessage("Just a moment...");
+                    progressDialog.show();                    sendNotification();
                 }else
                 {
                     Toast.makeText(AdminNewNotification.this, "Cant leave fields empty", Toast.LENGTH_SHORT).show();
@@ -84,7 +89,10 @@ public class AdminNewNotification extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-
+                if(progressDialog!=null)
+                {
+                    progressDialog.dismiss();
+                }
             }
         }) {
 
@@ -119,9 +127,13 @@ public class AdminNewNotification extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i(TAG, "onResponse: " + response);
-                Intent intent  = new Intent(getApplicationContext(), AdminMainActivity.class);
-                startActivity(intent);
-                finish();
+                if(progressDialog!=null)
+                {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(getApplicationContext(), AdminMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, new Response.ErrorListener() {
             @Override

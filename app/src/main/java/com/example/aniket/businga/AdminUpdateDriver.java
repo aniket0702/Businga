@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class AdminUpdateDriver extends AppCompatActivity {
     EditText driver_name;
     EditText driver_number;
     EditText bus_number;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,12 @@ public class AdminUpdateDriver extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = new ProgressDialog(AdminUpdateDriver.this);
+                progressDialog.setTitle("Updating Driver");
+                progressDialog.setMessage("Just a moment...");
+                progressDialog.show();
                 check_variables();
+
 
             }
         });
@@ -103,14 +110,21 @@ public class AdminUpdateDriver extends AppCompatActivity {
             public void onResponse(String response) {
                 //Do something when response recieved
                 Log.i(TAG, "onResponse: "+response);
-                Intent intent = new Intent(getApplicationContext(), AdminMainActivity.class);
-                finish();
+                if(progressDialog!=null)
+                {
+                    progressDialog.dismiss();
+                    Intent intent = new Intent(getApplicationContext(), AdminMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                if(progressDialog!=null)
+                    progressDialog.dismiss();
 
             }
         }){

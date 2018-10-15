@@ -54,7 +54,7 @@ public class ComplaintPortal extends Fragment {
                     Toast.makeText(getContext(), "Enter something!", Toast.LENGTH_SHORT).show();
                 }else{
                     progressDialog=new ProgressDialog(getContext());
-                    progressDialog.setTitle("Authenticate");;
+                    progressDialog.setTitle("Authenticate");
                     progressDialog.setMessage("Authenticating...");
                     progressDialog.show();
                     String currentDateString = DateFormat.getDateTimeInstance().format(new Date());
