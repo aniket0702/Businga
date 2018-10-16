@@ -38,20 +38,20 @@ import java.util.List;
 import java.util.Map;
 
 public class HolidayPoll extends Fragment {
-    private static final String TAG = "Main Activity " ;
+    public static final String MyPREFERENCES = "MyPrefs";
+    private static final String TAG = "Main Activity ";
     protected Spinner sp;
     protected Spinner sp2;
     protected Spinner sp3;
     Button bt2;
     Date d;
     int option;
-    int type;
+    static int type;
     EditText response;
-    List<String> ls = new ArrayList<>();
+    static List<String> ls = new ArrayList<>();
     List<String> ls2 = new ArrayList<>();
     List<String> ls3 = new ArrayList<>();
     ProgressDialog progressDialog;
-    public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     private Context mcontext;
@@ -59,8 +59,8 @@ public class HolidayPoll extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View iv= inflater.inflate(R.layout.fragment_holiday_poll, container, false);
-        this.mcontext=getContext();
+        View iv = inflater.inflate(R.layout.fragment_holiday_poll, container, false);
+        this.mcontext = getContext();
         sp = (Spinner) iv.findViewById(R.id.spinner);
         sp2 = (Spinner) iv.findViewById(R.id.spinner2);
         sp3 = (Spinner) iv.findViewById(R.id.spinner3);
@@ -68,12 +68,13 @@ public class HolidayPoll extends Fragment {
         option = 0;
         type = 1;
         sharedPref = mcontext.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        editor= sharedPref.edit();
-        refreshnotification();
-        if(sharedPref.getBoolean("repeated", false)==true){
+        editor = sharedPref.edit();
+        updateSpinners();
+        if (sharedPref.getBoolean("repeated", false) == true) {
+            Log.i(TAG, "onCreateView: " + String.valueOf(sharedPref.getBoolean("repeated", false)));
             Toast.makeText(mcontext, "You have submitted the response", Toast.LENGTH_SHORT).show();
             bt2.setEnabled(false);
-        }else if(sharedPref.getBoolean("invalid", false)==true){
+        } else if (sharedPref.getBoolean("invalid", false) == true) {
             Toast.makeText(mcontext, "The poll has ended", Toast.LENGTH_SHORT).show();
             bt2.setEnabled(false);
         }
@@ -91,7 +92,7 @@ public class HolidayPoll extends Fragment {
         sp3.setAdapter(adapter3);
 
         final String[] is = new String[1];
-        is[0]=null;
+        is[0] = null;
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -112,7 +113,7 @@ public class HolidayPoll extends Fragment {
             }
         });
 
-        if(type==1) {
+        if (type == 1) {
             sp3.setEnabled(false);
             sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -130,7 +131,7 @@ public class HolidayPoll extends Fragment {
             });
         }
 
-        if(type==2) {
+        if (type == 2) {
             sp2.setEnabled(false);
             sp3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -157,7 +158,7 @@ public class HolidayPoll extends Fragment {
                     progressDialog.setTitle("Sending Response");
                     progressDialog.setMessage("Just a moment...");
                     progressDialog.show();
-                    Log.i(TAG, "getParams: " +  new SimpleDateFormat("yyyy-MM-dd").format(d));
+                    Log.i(TAG, "getParams: " + new SimpleDateFormat("yyyy-MM-dd").format(d));
                     RequestQueue queue = Volley.newRequestQueue(getContext());
                     StringRequest sr = new StringRequest(Request.Method.POST, "https://wwwbusingacom.000webhostapp.com/bus_poll_user.php", new Response.Listener<String>() {
 
@@ -166,8 +167,7 @@ public class HolidayPoll extends Fragment {
                             //Do something when response recieved
                             Log.i(TAG, "onResponse: " + response);
                             //swipeRefreshLayout.setRefreshing(false);
-                            if(progressDialog!=null)
-                            {
+                            if (progressDialog != null) {
                                 progressDialog.dismiss();
                                 getActivity().finish();
                                 startActivity(getActivity().getIntent());
@@ -182,10 +182,10 @@ public class HolidayPoll extends Fragment {
                             Log.d("tag", "Errroroor");
                             error.printStackTrace();
                             //swipeRefreshLayout.setRefreshing(false);
-                            if(progressDialog != null)
+                            if (progressDialog != null)
                                 progressDialog.dismiss();
                         }
-                        }){
+                    }) {
 
                         @Override
                         protected Map<String, String> getParams() {
@@ -202,59 +202,24 @@ public class HolidayPoll extends Fragment {
         });
         return iv;
     }
-    public void refreshnotification() {
-        //final int[] a = {0};
-        RequestQueue queue = Volley.newRequestQueue(getContext());
-        StringRequest sr = new StringRequest(Request.Method.GET, "https://wwwbusingacom.000webhostapp.com/bus_poll_user.php", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                //Do something when response recieved
 
-                String driv[] = response.split("////");
-                for (String d : driv) {
-                    String det[] = d.split("//");
-                    if (det.length == 3) {
-                        if (det[0] != "" && det[1] != "" && det[2]!="") {
-                            try {
-                                if(new SimpleDateFormat("yyyy-mm-dd").parse(det[1]).compareTo(new java.util.Date())<0)
-                                    editor.putBoolean("invalid", true);
-                                    editor.putBoolean("repeated", false);
-                                    editor.commit();
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
-                            ls.add(det[0]);
-                            type=Integer.parseInt(det[2]);
-                            Log.i(TAG, "type  " + String.valueOf(type));
-                        }
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("tag", "Errroroor");
-                error.printStackTrace();
-                //swipeRefreshLayout.setRefreshing(false);
-            }
-        });
-        queue.add(sr);
-
-        ls.add("Day");
-        ls2.add("Time");
-        ls2.add("11:00 am");
-        ls2.add("3:05 pm");
-        ls2.add("6:15 pm");
-        ls2.add("7:00 pm");
-        ls2.add("8:00 pm");
-        ls3.add("Time");
-        ls3.add("7:00 am");
-        ls3.add("8:00 am");
-        ls3.add("1:30 pm");
-        ls3.add("5:30 pm");
-        ls3.add("7:00 pm");
-        ls3.add("8:30 pm");
-        ls3.add("9:30 pm");
-        //return a[0];
+    private void updateSpinners() {
+        if (type == 1) {
+            ls2.add("Time");
+            ls2.add("11:00 am");
+            ls2.add("3:05 pm");
+            ls2.add("6:15 pm");
+            ls2.add("7:00 pm");
+            ls2.add("8:00 pm");
+        } else {
+            ls3.add("Time");
+            ls3.add("7:00 am");
+            ls3.add("8:00 am");
+            ls3.add("1:30 pm");
+            ls3.add("5:30 pm");
+            ls3.add("7:00 pm");
+            ls3.add("8:30 pm");
+            ls3.add("9:30 pm");
+        }
     }
 }

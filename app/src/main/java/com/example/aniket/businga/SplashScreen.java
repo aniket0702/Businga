@@ -2,6 +2,7 @@ package com.example.aniket.businga;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Handler;
@@ -32,6 +33,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,7 +87,7 @@ public class SplashScreen extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                getNotifications();
+                refreshnotification();
                 flg = 1;
             }
         }, SPLASH_DISPLAY_LENGTH);
@@ -141,6 +144,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.i(TAG, "onResponse: " + response);
+                notificationDetails.list.clear();
                 //Do something when response recieved
                 String driv[] = response.split("////");
                 for (String d : driv) {
@@ -168,5 +172,56 @@ public class SplashScreen extends AppCompatActivity {
         };
         queue.add(sr);
     }
+    public void refreshnotification() {
+        //final int[] a = {0};
+        SharedPreferences pollPreference = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pollPreference.edit();
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest sr = new StringRequest(Request.Method.GET, "https://wwwbusingacom.000webhostapp.com/bus_poll_user.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Do something when response recieved
 
+                HolidayPoll.ls.clear();
+                String driv[] = response.split("////");
+                for (String d : driv) {
+                    String det[] = d.split("//");
+                    if (det.length == 3) {
+                        if (det[0] != "" && det[1] != "" && det[2] != "") {
+                            try {
+                                Log.i(TAG, "onResponse: " + det[1]);
+                                if ((new SimpleDateFormat("yyyy-MM-dd").parse(det[1]).after(new java.util.Date())) ) {
+                                    editor.putBoolean("invalid", true);
+                                    Log.i(TAG, "onResponse: done invalid true");
+                                    editor.putBoolean("repeated", false);
+                                    editor.commit();
+                                }else{
+                                    editor.putBoolean("invalid", false);
+                                    editor.commit();
+                                    HolidayPoll.ls.add(det[0]);
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            HolidayPoll.type = Integer.parseInt(det[2]);
+                            Log.i(TAG, "type  " + String.valueOf(HolidayPoll.type));
+
+                        }
+                    }
+                }
+                HolidayPoll.ls.add("Day");
+                getNotifications();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("tag", "Errroroor");
+                error.printStackTrace();
+                //swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        queue.add(sr);
+        //return a[0];
+    }
 }
