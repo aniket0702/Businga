@@ -30,7 +30,7 @@ public class Notification extends Fragment {
     private RecyclerView rv;
     SwipeRefreshLayout swipeRefreshLayout;
     NotificationDetails notificationDetails;
-
+    NotificationRVAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class Notification extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        NotificationRVAdapter adapter = new NotificationRVAdapter(details, getContext());
+        adapter = new NotificationRVAdapter(details, getContext());
         rv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -80,7 +80,9 @@ public class Notification extends Fragment {
                         }
                     }
                 }
+                adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
+
 
             }
         }, new Response.ErrorListener() {

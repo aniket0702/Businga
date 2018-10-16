@@ -31,7 +31,7 @@ public class BusTrack extends Fragment {
     private List<BusTrackItemDetails> details;
     private RecyclerView rv;
     BusDetails bus;
-
+    BusTrackRVAdapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
     @Override
@@ -62,7 +62,7 @@ public class BusTrack extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        BusTrackRVAdapter adapter = new BusTrackRVAdapter(details,getContext());
+        adapter = new BusTrackRVAdapter(details,getContext());
         rv.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -81,6 +81,7 @@ public class BusTrack extends Fragment {
                     String det[]=d.split(",");
                     bus.updateBus(det[0],det[1],det[2],Integer.parseInt(det[3]));
                 }
+                adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
 
             }
