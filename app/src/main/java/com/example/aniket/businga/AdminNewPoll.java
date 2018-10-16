@@ -195,8 +195,8 @@ public class AdminNewPoll extends AppCompatActivity {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("type",String.valueOf(type));
-                params.put("FromDate",final_year[0]+final_month[0] + final_day[0]);
-                params.put("ToDate",final_year[1]+final_month[1] + final_day[1]);
+                params.put("FromDate",final_year[0]+ "-" + final_month[0] + "-" + final_day[0]);
+                params.put("ToDate",final_year[1]+"-"+final_month[1] +"-"+ final_day[1]);
                 params.put("till_when", till_date);
 
                 return params;

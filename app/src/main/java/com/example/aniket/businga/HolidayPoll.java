@@ -1,6 +1,8 @@
 package com.example.aniket.businga;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -44,12 +47,10 @@ public class HolidayPoll extends Fragment {
     int option;
     int type;
     EditText response;
-    EditText v;
-    Button bt3;
     List<String> ls = new ArrayList<>();
     List<String> ls2 = new ArrayList<>();
     List<String> ls3 = new ArrayList<>();
-    SwipeRefreshLayout swipeRefreshLayout;
+    ProgressDialog progressDialog;
     public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
@@ -64,18 +65,16 @@ public class HolidayPoll extends Fragment {
         sp2 = (Spinner) iv.findViewById(R.id.spinner2);
         sp3 = (Spinner) iv.findViewById(R.id.spinner3);
         bt2 = (Button) iv.findViewById(R.id.button2);
-        response = (EditText) iv.findViewById(R.id.editText2);
-        v=(EditText) iv.findViewById(R.id.view);
         option = 0;
+        type = 1;
         sharedPref = mcontext.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor= sharedPref.edit();
-        if(sharedPref.getBoolean("repeated", false)==true){
-            v.setText("You have alreday filled the response");
-            bt2.setEnabled(false);
-        }
         refreshnotification();
-        if(sharedPref.getBoolean("invalid", false)==true){
-            v.setText("The poll has been closed");
+        if(sharedPref.getBoolean("repeated", false)==true){
+            Toast.makeText(mcontext, "You have submitted the response", Toast.LENGTH_SHORT).show();
+            bt2.setEnabled(false);
+        }else if(sharedPref.getBoolean("invalid", false)==true){
+            Toast.makeText(mcontext, "The poll has ended", Toast.LENGTH_SHORT).show();
             bt2.setEnabled(false);
         }
 
@@ -99,7 +98,7 @@ public class HolidayPoll extends Fragment {
                 is[0] = parent.getItemAtPosition(position).toString();
                 try {
                     Log.d(TAG, "onItemSelected: " + is[0]);
-                    d = new SimpleDateFormat("yyyy-mm-dd").parse(is[0]);
+                    d = new SimpleDateFormat("yyyy-MM-dd").parse(is[0]);
                     //v.setText();
                 } catch (ParseException e) {
                     e.printStackTrace();
@@ -119,13 +118,14 @@ public class HolidayPoll extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     option = position;
+                    Log.i(TAG, "onItemSelected: " + String.valueOf(option));
                     String il = parent.getItemAtPosition(position).toString();
                     //Toast.makeText(MainActivity.this, "Selected " + il, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    response.setText("Please select a valid option");
+                    Toast.makeText(mcontext, "Please select a valid option", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -136,13 +136,14 @@ public class HolidayPoll extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     option = position;
+                    Log.i(TAG, "onItemSelected: " + String.valueOf(option));
                     String il = parent.getItemAtPosition(position).toString();
                     //Toast.makeText(MainActivity.this, "Selected " + il, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    response.setText("Please select a valid option");
+                    Toast.makeText(mcontext, "Please select a valid option", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -150,8 +151,13 @@ public class HolidayPoll extends Fragment {
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i(TAG, "onClick: " + String.valueOf(option) + String.valueOf(is[0]));
                 if (option != 0 && is[0] != null) {
-                    response.setText("Entered");
+                    progressDialog = new ProgressDialog(getContext());
+                    progressDialog.setTitle("Sending Response");
+                    progressDialog.setMessage("Just a moment...");
+                    progressDialog.show();
+                    Log.i(TAG, "getParams: " +  new SimpleDateFormat("yyyy-MM-dd").format(d));
                     RequestQueue queue = Volley.newRequestQueue(getContext());
                     StringRequest sr = new StringRequest(Request.Method.POST, "https://wwwbusingacom.000webhostapp.com/bus_poll_user.php", new Response.Listener<String>() {
 
@@ -160,7 +166,15 @@ public class HolidayPoll extends Fragment {
                             //Do something when response recieved
                             Log.i(TAG, "onResponse: " + response);
                             //swipeRefreshLayout.setRefreshing(false);
-
+                            if(progressDialog!=null)
+                            {
+                                progressDialog.dismiss();
+                                getActivity().finish();
+                                startActivity(getActivity().getIntent());
+                            }
+                            editor.putBoolean("repeated", true);
+                            //bt2.setEnabled(false);
+                            editor.commit();
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -168,23 +182,21 @@ public class HolidayPoll extends Fragment {
                             Log.d("tag", "Errroroor");
                             error.printStackTrace();
                             //swipeRefreshLayout.setRefreshing(false);
+                            if(progressDialog != null)
+                                progressDialog.dismiss();
                         }
+                        }){
 
-
+                        @Override
                         protected Map<String, String> getParams() {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("Date", new SimpleDateFormat("yyyy-mm-dd").format(d));
+                            params.put("Date", new SimpleDateFormat("yyyy-MM-dd").format(d));
                             params.put("option", Integer.toString(option));
                             params.put("type", Integer.toString(type));
                             return params;
                         }
-                    });
-
-                    editor.putBoolean("repeated", true);
-                    response.setText("Your response has been recorded");
-                    //bt2.setEnabled(false);
-                    editor.commit();
-
+                    };
+                    queue.add(sr);
                 }
             }
         });
@@ -206,11 +218,14 @@ public class HolidayPoll extends Fragment {
                             try {
                                 if(new SimpleDateFormat("yyyy-mm-dd").parse(det[1]).compareTo(new java.util.Date())<0)
                                     editor.putBoolean("invalid", true);
+                                    editor.putBoolean("repeated", false);
+                                    editor.commit();
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
                             ls.add(det[0]);
                             type=Integer.parseInt(det[2]);
+                            Log.i(TAG, "type  " + String.valueOf(type));
                         }
                     }
                 }
