@@ -64,6 +64,7 @@ public class BusTrack extends Fragment {
         rv.setHasFixedSize(true);
         BusTrackRVAdapter adapter = new BusTrackRVAdapter(details,getContext());
         rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public void refreshDrivers(){

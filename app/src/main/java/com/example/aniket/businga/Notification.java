@@ -59,6 +59,7 @@ public class Notification extends Fragment {
         rv.setHasFixedSize(true);
         NotificationRVAdapter adapter = new NotificationRVAdapter(details, getContext());
         rv.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     public void refreshnotification()

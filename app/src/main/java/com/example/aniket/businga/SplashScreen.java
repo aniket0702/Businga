@@ -222,6 +222,5 @@ public class SplashScreen extends AppCompatActivity {
             }
         });
         queue.add(sr);
-        //return a[0];
     }
 }

@@ -65,7 +65,7 @@ public class AdminMainActivity extends AppCompatActivity implements View.OnClick
                 intent = new Intent(this, AdminNewPoll.class);
                 break;
             case R.id.old_poll:
-                intent = new Intent(this, AdminNewNotification.class);
+                intent = new Intent(this, AdminPollResult.class);
                 break;
             case R.id.update_driver:
                 intent = new Intent(this, AdminUpdateDriver.class);

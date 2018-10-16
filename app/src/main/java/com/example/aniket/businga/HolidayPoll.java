@@ -37,18 +37,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
+
 public class HolidayPoll extends Fragment {
     public static final String MyPREFERENCES = "MyPrefs";
     private static final String TAG = "Main Activity ";
+    static int type;
+    static List<String> ls = new ArrayList<>();
     protected Spinner sp;
     protected Spinner sp2;
     protected Spinner sp3;
     Button bt2;
     Date d;
     int option;
-    static int type;
+    SwipeRefreshLayout swipeRefreshLayout;
     EditText response;
-    static List<String> ls = new ArrayList<>();
+    String email;
     List<String> ls2 = new ArrayList<>();
     List<String> ls3 = new ArrayList<>();
     ProgressDialog progressDialog;
@@ -61,20 +66,18 @@ public class HolidayPoll extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View iv = inflater.inflate(R.layout.fragment_holiday_poll, container, false);
         this.mcontext = getContext();
+        SharedPreferences mypref = mcontext.getSharedPreferences("Mypref", MODE_PRIVATE);
+        email = mypref.getString("email", "");
         sp = (Spinner) iv.findViewById(R.id.spinner);
         sp2 = (Spinner) iv.findViewById(R.id.spinner2);
         sp3 = (Spinner) iv.findViewById(R.id.spinner3);
         bt2 = (Button) iv.findViewById(R.id.button2);
         option = 0;
         type = 1;
-        sharedPref = mcontext.getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        sharedPref = mcontext.getSharedPreferences(MyPREFERENCES, MODE_PRIVATE);
         editor = sharedPref.edit();
         updateSpinners();
-        if (sharedPref.getBoolean("repeated", false) == true) {
-            Log.i(TAG, "onCreateView: " + String.valueOf(sharedPref.getBoolean("repeated", false)));
-            Toast.makeText(mcontext, "You have submitted the response", Toast.LENGTH_SHORT).show();
-            bt2.setEnabled(false);
-        } else if (sharedPref.getBoolean("invalid", false) == true) {
+        if (sharedPref.getBoolean("invalid", false) == true) {
             Toast.makeText(mcontext, "The poll has ended", Toast.LENGTH_SHORT).show();
             bt2.setEnabled(false);
         }
@@ -172,7 +175,9 @@ public class HolidayPoll extends Fragment {
                                 getActivity().finish();
                                 startActivity(getActivity().getIntent());
                             }
-                            editor.putBoolean("repeated", true);
+                            if (response.equals("pollDone") == true) {
+                                Toast.makeText(getContext(), "You have already submitted the response...", Toast.LENGTH_SHORT).show();
+                            }
                             //bt2.setEnabled(false);
                             editor.commit();
                         }
@@ -193,6 +198,7 @@ public class HolidayPoll extends Fragment {
                             params.put("Date", new SimpleDateFormat("yyyy-MM-dd").format(d));
                             params.put("option", Integer.toString(option));
                             params.put("type", Integer.toString(type));
+                            params.put("email", email);
                             return params;
                         }
                     };
@@ -222,4 +228,52 @@ public class HolidayPoll extends Fragment {
             ls3.add("9:30 pm");
         }
     }
+
+    public void refreshpoll() {
+        SharedPreferences pollPreference = mcontext.getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = pollPreference.edit();
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        StringRequest sr = new StringRequest(Request.Method.GET, "https://wwwbusingacom.000webhostapp.com/bus_poll_user.php", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //Do something when response recieved
+                ls.clear();
+                String driv[] = response.split("////");
+                for (String d : driv) {
+                    String det[] = d.split("//");
+                    if (det.length == 3) {
+                        if (det[0] != "" && det[1] != "" && det[2] != "") {
+                            try {
+                                Log.i(TAG, "onResponse: " + det[1]);
+                                if ((new SimpleDateFormat("yyyy-MM-dd").parse(det[1]).after(new java.util.Date()))) {
+                                    editor.putBoolean("invalid", true);
+                                    Log.i(TAG, "onResponse: done invalid true");
+                                    editor.putBoolean("repeated", false);
+                                    editor.commit();
+                                } else {
+                                    editor.putBoolean("invalid", false);
+                                    editor.commit();
+                                    ls.add(det[0]);
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            type = Integer.parseInt(det[2]);
+                            Log.i(TAG, "type  " + String.valueOf(HolidayPoll.type));
+                        }
+                    }
+                }
+                ls.add("Day");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("tag", "Errroroor");
+                error.printStackTrace();
+                //swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+        queue.add(sr);
+    }
+
 }
