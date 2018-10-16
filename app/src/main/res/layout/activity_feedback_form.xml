@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey"
+    android:padding="1dp"
     tools:context=".FeedbackForm">
 
     <EditText
         android:id="@+id/feedbackReview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_margin="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="89dp"
-        android:layout_alignParentLeft="true" />
+        android:layout_width="377dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
+        android:hint="We would love to hear from you."
+        android:inputType="text|textCapSentences|textMultiLine|textShortMessage|textLongMessage"
+        android:padding="2dp"
+        android:paddingLeft="4sp"
+        android:paddingRight="4sp"
+        android:singleLine="false"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/feedbackSubmit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/feedbackSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/feedbackReview"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="40dp"
+        android:background="@color/darkyellow"
         android:elevation="0dp"
-        android:text="Submit Feedback" />
-</RelativeLayout>
+        android:padding="2dp"
+        android:text="Submit Feedback"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedbackReview" />
+</android.support.constraint.ConstraintLayout>

@@ -13,17 +13,15 @@
             style="@style/Widget.AppCompat.EditText"
             android:layout_width="0dp"
             android:layout_height="194dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="12dp"
             android:background="@android:color/background_light"
             android:hint="Enter the Complaints here"
-
             android:inputType="text|textMultiLine|textCapSentences"
-            android:maxLines="5"
+            android:maxLines="6"
             android:selectAllOnFocus="true"
             android:singleLine="true"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5" />
@@ -35,11 +33,11 @@
             android:layout_marginTop="8dp"
             android:background="@color/darkyellow"
             android:text="Send"
-            android:textColor="@color/Grey"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="@id/complaintPortalText"
             app:layout_constraintLeft_toLeftOf="@id/complaintPortalText"
+            app:layout_constraintRight_toRightOf="@id/complaintPortalText"
             app:layout_constraintTop_toBottomOf="@id/complaintPortalText" />
 
         <TextView
@@ -62,14 +60,15 @@
             android:layout_width="0dp"
 
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="*This complaint will directly convey to the main authorities with your Email Id and Name."
-            android:textStyle="italic"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:text="*This complaint will directly convey to the main authorities with your Email Id and Name."
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/complaintSendButton"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="@id/complaintPortalText"
-            app:layout_constraintRight_toRightOf="@id/complaintPortalText" />
+            app:layout_constraintRight_toRightOf="@id/complaintPortalText"
+            app:layout_constraintTop_toBottomOf="@id/complaintSendButton" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

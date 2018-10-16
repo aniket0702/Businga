@@ -4,61 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey"
     tools:context=".MyAccount">
 
     <Button
         android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
+        android:layout_width="133dp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/email_editview"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
         android:layout_marginBottom="159dp"
-        android:text="Edit" />
+        android:background="@color/darkyellow"
+        android:inputType="textCapSentences"
+        android:text="Edit"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/name_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="81dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="73dp"
         android:text="Name" />
 
     <EditText
         android:id="@+id/name_editview"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/name_textview"
-        android:layout_centerHorizontal="true"
-        android:text="Name"
-        android:enabled="false" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:enabled="false"
+        android:text="Name" />
 
     <TextView
         android:id="@+id/email_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_width="69dp"
+        android:layout_height="36dp"
         android:layout_alignStart="@+id/name_textview"
-        android:layout_marginTop="196dp"
+        android:layout_alignLeft="@+id/name_textview"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="159dp"
         android:text="Email" />
 
     <TextView
         android:id="@+id/email_editview"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:text="email"
         android:layout_alignStart="@+id/name_editview"
-        android:layout_alignTop="@+id/email_textview" />
+        android:layout_alignLeft="@+id/name_editview"
+        android:layout_alignTop="@+id/email_textview"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="-2dp"
+        android:layout_marginTop="-7dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:text="Email" />
 
     <Button
         android:id="@+id/done"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
+        android:layout_width="133dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="84dp"
-        android:text="Done" />
+        android:text="Done"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/darkyellow"
+        android:visibility="gone"/>
 
 </RelativeLayout>
+

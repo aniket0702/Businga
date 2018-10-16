@@ -37,5 +37,4 @@ public class ImportantContacts extends AppCompatActivity {
         ImportantContactsRVAdapter adapter = new ImportantContactsRVAdapter(details, getApplicationContext());
         rv.setAdapter(adapter);
     }
-
 }

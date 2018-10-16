@@ -4,34 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/Grey"
     tools:context=".AdminNewPoll">
 
     <EditText
         android:id="@+id/poll_header"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:text="Poll header" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:hint="Poll header"
+        android:padding="2sp" />
 
     <EditText
         android:id="@+id/poll_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+
+        android:layout_alignStart="@+id/poll_header"
+        android:layout_alignLeft="@+id/poll_header"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
-        android:hint="Poll body" />
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="98dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
+        android:hint="Poll body"
+        android:inputType="text|textCapSentences|textMultiLine|textLongMessage"
+        android:padding="5sp"
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/select_from_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="196dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/to_or_from"
+        android:layout_alignEnd="@+id/to_or_from"
+        android:layout_alignRight="@+id/to_or_from"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="191dp"
-        android:text="Select_date" />
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="117dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="-7dp"
+        android:layout_marginRight="-7dp"
+        android:layout_marginBottom="165dp"
+        android:background="@color/darkyellow"
+        android:text="Select_date"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/view_text_view"
@@ -45,32 +72,52 @@
         android:id="@+id/to_or_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="214dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="256dp"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/departure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="2sp"
             android:text="Departure" />
 
         <RadioButton
             android:id="@+id/arrival"
-            android:defaultFocusHighlightEnabled="true"
-            android:layout_width="wrap_content"
+            android:layout_width="88dp"
             android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/to_or_from"
+            android:layout_marginTop="10dp"
+            android:defaultFocusHighlightEnabled="true"
+            android:padding="2sp"
             android:text="Arrival" />
     </RadioGroup>
 
     <Button
         android:id="@+id/submit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="196dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/to_or_from"
+        android:layout_alignEnd="@+id/select_from_date"
+        android:layout_alignRight="@+id/select_from_date"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="136dp"
-        android:text="Create poll" />
+        android:layout_marginStart="119dp"
+        android:layout_marginLeft="119dp"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="-9dp"
+        android:layout_marginRight="-9dp"
+        android:layout_marginBottom="47dp"
+        android:background="@color/darkyellow"
+        android:padding="10dp"
+        android:text="Create poll"
+        android:textSize="15sp" />
 
 </RelativeLayout>
