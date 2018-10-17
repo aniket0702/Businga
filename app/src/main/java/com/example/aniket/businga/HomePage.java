@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -55,8 +56,11 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
             .requestEmail()
             .build();
     GoogleApiClient mGoogleApiClient;
-
-
+    NavigationView navigationView;
+    View header;
+    TextView name_nav_header;
+    TextView email_nav_header;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -85,12 +89,12 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navigationViewLayout);
+        navigationView = (NavigationView)findViewById(R.id.navigationViewLayout);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
-        TextView name_nav_header = header.findViewById(R.id.textView2);
-        TextView email_nav_header = header.findViewById(R.id.textView4);
-        SharedPreferences sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
+        name_nav_header = header.findViewById(R.id.textView2);
+        email_nav_header = header.findViewById(R.id.textView4);
+        sharedPreferences = getSharedPreferences("Mypref", MODE_PRIVATE);
         name_nav_header.setText(sharedPreferences.getString("Name",""));
         email_nav_header.setText(sharedPreferences.getString("email",""));
     }
@@ -243,5 +247,20 @@ public class HomePage extends AppCompatActivity  implements NavigationView.OnNav
         }
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        name_nav_header.setText(sharedPreferences.getString("Name",""));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.drawer_layout.isDrawerOpen(GravityCompat.START)) {
+            this.drawer_layout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

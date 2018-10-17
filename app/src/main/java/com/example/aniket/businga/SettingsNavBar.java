@@ -1,5 +1,6 @@
 package com.example.aniket.businga;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class SettingsNavBar extends AppCompatActivity {
         name_edittext = findViewById(R.id.name_editview);
         email_edittext = findViewById(R.id.email_editview);
         final SharedPreferences mypref = getSharedPreferences("Mypref", MODE_PRIVATE);
-        final SharedPreferences.Editor myprefeditor = sharedPreferences.edit();
+        final SharedPreferences.Editor myprefeditor = mypref.edit();
         String name = mypref.getString("Name","");
         String email = mypref.getString("email", "");
         name_edittext.setText(name);
@@ -69,11 +70,12 @@ public class SettingsNavBar extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String new_name = name_edittext.getText().toString();
+                String new_name = name_edittext.getText().toString().trim();
                 myprefeditor.putString("Name", new_name);
-                Toast.makeText(getApplicationContext(), "Name changed to " + new_name,Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Name changed to " + new_name,Toast.LENGTH_SHORT).show();
                 name_edittext.setEnabled(false);
-                myprefeditor.commit();
+                myprefeditor.apply();
+                name_edittext.setText(mypref.getString("Name", ""));
                 done.setVisibility(View.GONE);
                 edit.setEnabled(true);
             }

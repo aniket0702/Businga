@@ -211,14 +211,12 @@ public class HolidayPoll extends Fragment {
 
     private void updateSpinners() {
         if (type == 1) {
-            ls2.add("Time");
             ls2.add("11:00 am");
             ls2.add("3:05 pm");
             ls2.add("6:15 pm");
             ls2.add("7:00 pm");
             ls2.add("8:00 pm");
         } else {
-            ls3.add("Time");
             ls3.add("7:00 am");
             ls3.add("8:00 am");
             ls3.add("1:30 pm");

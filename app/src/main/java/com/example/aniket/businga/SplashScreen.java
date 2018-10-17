@@ -190,7 +190,7 @@ public class SplashScreen extends AppCompatActivity {
                         if (det[0] != "" && det[1] != "" && det[2] != "") {
                             try {
                                 Log.i(TAG, "onResponse: " + det[1]);
-                                if ((new SimpleDateFormat("yyyy-MM-dd").parse(det[1]).after(new java.util.Date())) ) {
+                                if (!(new SimpleDateFormat("yyyy-MM-dd").parse(det[1]).after(new java.util.Date())) ) {
                                     editor.putBoolean("invalid", true);
                                     Log.i(TAG, "onResponse: done invalid true");
                                     editor.putBoolean("repeated", false);
@@ -210,7 +210,6 @@ public class SplashScreen extends AppCompatActivity {
                         }
                     }
                 }
-                HolidayPoll.ls.add("Day");
                 getNotifications();
             }
         }, new Response.ErrorListener() {

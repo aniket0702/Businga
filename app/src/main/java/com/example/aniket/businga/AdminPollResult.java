@@ -21,16 +21,21 @@ import java.text.SimpleDateFormat;
 public class AdminPollResult extends AppCompatActivity {
     Button b;
     TextView t;
+    ProgressDialog progressDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_poll_result);
         b = (Button)findViewById(R.id.show_result);
+        progressDialog = new ProgressDialog(AdminPollResult.this);
         t = (TextView) findViewById(R.id.poll_result);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showResult();
+                progressDialog.setTitle("Fetching Poll Results");
+                progressDialog.setMessage("Just a moment ...");
+                progressDialog.show();
             }
         });
     }
@@ -70,12 +75,16 @@ public class AdminPollResult extends AppCompatActivity {
                         }
                     }
                 }
+                if(progressDialog!=null)
+                    progressDialog.dismiss();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("tag", "Errroroor");
                 error.printStackTrace();
+                if(progressDialog!=null)
+                    progressDialog.dismiss();
                 //swipeRefreshLayout.setRefreshing(false);
             }
         });
